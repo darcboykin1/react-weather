@@ -9,6 +9,8 @@ class App extends Component {
 
     this.state = {
       temp:'Please Enter Your Zip Code',
+      high:'High',
+      low:'Low'
     }
   }
 
@@ -33,14 +35,28 @@ class App extends Component {
     if(userZip.length === 5){
       let newZip = parseInt(userZip);//changing the type of userZip from a basic string to a number
 
-    if(isNaN(newZip) === true){//if the string input by the user was not a number, we'll change the state to make them put in a number
+    if(isNaN(newZip) === true){//if the string input by the user was not a number, we'll change the state to prompt them to put in a number
       this.setState({
         temp:'Please Enter a Valid Zip Code.'
       })
     }else{
       axios.get(`http://api.openweathermap.org/data/2.5/weather?zip=${newZip},us&APPID=d6f07a1cb2a62e6afc1ac709f42831e7`)
-      .then(function(response){
+      .then((response) => {
         console.log(response.data);
+
+        let data = response.data;
+
+        let weather = data.main.temp;
+        let min = data.main.temp_min;
+        let max = data.main.temp_max;
+
+        console.log(data.main.temp);
+
+        this.setState({
+          temp:Math.floor(9/5 * (weather - 273) + 32) + " °F ",
+          high:"With a highest of " + Math.floor(9/5 * (max - 273) + 32) + " °F ",
+          low:"And a lowest of " + Math.floor(9/5 * (min - 273) + 32) + " °F "
+        });
     })
       .catch((error)=>{
         console.error(error);
@@ -60,6 +76,8 @@ class App extends Component {
         <form onSubmit={(e)=>{this.showTemp(e)}}>
           <input type="text" placeholder="Enter Zip Here" className="zipfield"/>
           <h1>{this.state.temp}</h1>
+          <h1>{this.state.high}</h1>
+          <h1>{this.state.low}</h1>
           <input type="button" value="search" onClick={(e)=>{this.showTemp(e)}}/>
         </form>
       </div>
