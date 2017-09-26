@@ -1,2 +1,67 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900');
 
 
+html, body, #root, .reactContainer, .formContainer {
+	height: 100%;
+}
+
+body {
+	background-color: #000066;
+}
+
+.formContainer {
+	width: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+form {
+	height: 50%;
+	width: 50%;
+	display: flex;
+	flex-flow: row wrap;
+	align-content: center;
+	justify-content: space-around;
+	background-color: rgba(256,256,256,0.7);
+}
+
+.inputContainer {
+	text-align: center;
+	width: 100%;
+}
+
+.temp {
+	width: 100%;
+}
+
+.zipfield {
+	font-family: 'Roboto', sans-serif;
+	font-weight: 100;
+	font-size: 30px;
+	text-align: center;
+}
+
+.button {
+	font-size: 30px;
+	background-color: #fff;
+	border: 1px solid black;
+	margin: 5px;
+	padding: 0.1em;
+	font-family: 'Roboto', sans-serif;
+	font-weight: 100;
+}
+
+h1 {
+	text-align: center;
+	font-family: 'Roboto', sans-serif;
+	font-weight: 300;
+}
+
+.high {
+	width: 150px;
+}
+
+.low {
+	width: 150px;
+}

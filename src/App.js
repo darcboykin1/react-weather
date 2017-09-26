@@ -54,8 +54,8 @@ class App extends Component {
 
         this.setState({
           temp:Math.floor(9/5 * (weather - 273) + 32) + " °F ",
-          high:"With a highest of " + Math.floor(9/5 * (max - 273) + 32) + " °F ",
-          low:"And a lowest of " + Math.floor(9/5 * (min - 273) + 32) + " °F "
+          high:"hi " + Math.floor(9/5 * (max - 273) + 32) + " °F ",
+          low:"lo " + Math.floor(9/5 * (min - 273) + 32) + " °F "
         });
     })
       .catch((error)=>{
@@ -72,14 +72,24 @@ class App extends Component {
 
   render(){
     return (
-      <div>
-        <form onSubmit={(e)=>{this.showTemp(e)}}>
-          <input type="text" placeholder="Enter Zip Here" className="zipfield"/>
-          <h1>{this.state.temp}</h1>
-          <h1>{this.state.high}</h1>
-          <h1>{this.state.low}</h1>
-          <input type="button" value="search" onClick={(e)=>{this.showTemp(e)}}/>
+      <div className="reactContainer">
+        <div className="formContainer">
+          <form onSubmit={(e)=>{this.showTemp(e)}}>
+          <div className="inputContainer">
+            <input type="text" placeholder="Enter Zip Here" className="zipfield"/>
+            <input type="button" value="search" className="button" onClick={(e)=>{this.showTemp(e)}}/>
+          </div>
+          <div className="temp">
+            <h1>{this.state.temp}</h1>
+          </div>
+          <div className="high">
+            <h1>{this.state.high}</h1>
+          </div>
+          <div className="low">
+            <h1>{this.state.low}</h1>
+          </div>
         </form>
+        </div>
       </div>
     );
   }
